@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Luxury Real Estate | GHL & Supabase Integration
 
-## Getting Started
+A premium, modern real estate lead generation website built with Next.js 15, integrated with GoHighLevel CRM and Supabase Backend.
 
-First, run the development server:
+## 🚀 Tech Stack
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion
+- **Backend**: Supabase (Database & Storage)
+- **CRM**: GoHighLevel (Lead Management & Automation)
+- **Deployment**: Vercel Ready
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🛠️ Setup Instructions
+
+### 1. Environment Variables
+Create a `.env.local` file in the root directory and add the following:
+```env
+# GoHighLevel API
+GHL_API_KEY=your_ghl_api_key
+GHL_LOCATION_ID=your_location_id
+GHL_CALENDAR_URL=https://msgsndr.com/widget/booking/YOUR_ID
+
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+
+# Public Widget
+NEXT_PUBLIC_GHL_CHAT_WIDGET_ID=your_widget_id
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Database Setup (Supabase)
+Run the SQL queries in `supabase_schema.sql` within your Supabase SQL Editor to create the necessary tables for properties and leads.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Install Dependencies
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run Locally
+```bash
+npm run dev
+```
 
-## Learn More
+## 📈 Lead Flow
+1. **User Submission**: Lead fills out the contact or inquiry form.
+2. **Supabase**: Data is saved to the `leads` table for permanent storage and analytics.
+3. **GoHighLevel**: A new contact is created/updated in GHL, tagged, and added to the relevant automation workflow.
+4. **Follow-up**: GHL triggers automated email/SMS responses and notifies the admin.
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Design Philosophy
+The site uses a "Luxury Modern" aesthetic with:
+- Gold gradients and accents
+- Deep black and clean white backgrounds
+- Premium typography (Playfair Display)
+- Fluid animations for a high-end feel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+MIT

@@ -5,6 +5,8 @@ import { Container, Section } from "@/components/layout/Section";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
+import { ContactForm } from "@/components/forms/ContactForm";
+
 export default function ContactPage() {
   return (
     <main className="min-h-screen">
@@ -99,52 +101,7 @@ export default function ContactPage() {
 
             {/* GHL Form Side */}
             <div className="lg:col-span-7">
-              <div className="bg-white dark:bg-black-light p-10 rounded-3xl border border-gold/10 shadow-2xl space-y-8">
-                <div className="space-y-4">
-                  <h2 className="text-3xl font-serif font-bold">Send a Message</h2>
-                  <p className="text-black/60 dark:text-white/60">
-                    Your inquiry will be directly routed to our senior consultants. 
-                    Expect a response within 2 business hours.
-                  </p>
-                </div>
-
-                {/* GHL Lead Form Placeholder */}
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold uppercase tracking-widest text-gold/80">First Name</label>
-                    <input type="text" placeholder="John" className="w-full bg-white-soft dark:bg-black border border-gold/10 rounded-xl px-5 py-4 focus:border-gold outline-none transition-colors" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold uppercase tracking-widest text-gold/80">Last Name</label>
-                    <input type="text" placeholder="Doe" className="w-full bg-white-soft dark:bg-black border border-gold/10 rounded-xl px-5 py-4 focus:border-gold outline-none transition-colors" />
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <label className="text-sm font-bold uppercase tracking-widest text-gold/80">Email Address</label>
-                    <input type="email" placeholder="john@example.com" className="w-full bg-white-soft dark:bg-black border border-gold/10 rounded-xl px-5 py-4 focus:border-gold outline-none transition-colors" />
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <label className="text-sm font-bold uppercase tracking-widest text-gold/80">Property Type Interested In</label>
-                    <select className="w-full bg-white-soft dark:bg-black border border-gold/10 rounded-xl px-5 py-4 focus:border-gold outline-none transition-colors">
-                      <option>Villa</option>
-                      <option>Penthouse</option>
-                      <option>Mansion</option>
-                      <option>Investment Property</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <label className="text-sm font-bold uppercase tracking-widest text-gold/80">Message</label>
-                    <textarea placeholder="Tell us about your requirements..." className="w-full bg-white-soft dark:bg-black border border-gold/10 rounded-xl px-5 py-4 focus:border-gold outline-none transition-colors h-40 resize-none" />
-                  </div>
-                  <div className="md:col-span-2 pt-4">
-                    <Button variant="gold" className="w-full h-16 rounded-xl text-xl shadow-xl">
-                      Submit Inquiry
-                    </Button>
-                    <p className="mt-4 text-xs text-center text-black/40 dark:text-white/40">
-                      By submitting this form, you agree to our privacy policy and terms of service.
-                    </p>
-                  </div>
-                </form>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </Container>
@@ -153,4 +110,5 @@ export default function ContactPage() {
       <Footer />
     </main>
   );
+}
 }
