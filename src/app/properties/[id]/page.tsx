@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Container, Section } from "@/components/layout/Section";
-import { properties } from "@/data/properties";
+import { propertyService } from "@/lib/propertyService";
+import { Property } from "@/data/properties";
 import { Bed, Bath, Maximize, MapPin, CheckCircle2, Phone, Mail, Calendar, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
@@ -14,8 +15,28 @@ import { motion } from "framer-motion";
 
 export default function PropertyDetailsPage() {
   const { id } = useParams();
-  const property = properties.find((p) => p.id === id) || properties[0];
+  const [property, setProperty] = useState<Property | null>(null);
+  const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const fetchProperty = async () => {
+      if (typeof id === "string") {
+        const data = await propertyService.getById(id);
+        setProperty(data);
+      }
+      setLoading(false);
+    };
+    fetchProperty();
+  }, [id]);
+
+  if (loading) {
+    return <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center text-gold">Loading...</div>;
+  }
+
+  if (!property) {
+    return <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center text-gold">Property Not Found</div>;
+  }
 
   return (
     <main className="min-h-screen">

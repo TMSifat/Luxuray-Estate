@@ -1,17 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Container, Section } from "@/components/layout/Section";
 import { PropertyCard } from "@/components/property/PropertyCard";
-import { properties } from "@/data/properties";
+import { propertyService } from "@/lib/propertyService";
+import { Property } from "@/data/properties";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function PropertiesPage() {
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const data = await propertyService.getAll();
+      setProperties(data);
+      setLoading(false);
+    };
+    fetchProperties();
+  }, []);
 
   const filteredProperties = properties.filter((p) => {
     const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -77,7 +89,11 @@ export default function PropertiesPage() {
 
           {/* Results Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProperties.length > 0 ? (
+            {loading ? (
+              Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="aspect-[4/5] bg-white-soft dark:bg-black-light animate-pulse rounded-3xl" />
+              ))
+            ) : filteredProperties.length > 0 ? (
               filteredProperties.map((property, index) => (
                 <PropertyCard key={property.id} property={property} index={index} />
               ))
